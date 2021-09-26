@@ -1,3 +1,4 @@
+import 'package:farm/app/pages/weather_page.dart';
 import 'package:farm/app/theme/color_palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ class _HomePageState extends State<HomePage> {
     Text(
       'Home',
     ),
-    Text(
-      ' Weather',
-    ),
+    WeatherPage(),
     Text(
       'Calendar',
     ),
@@ -36,10 +35,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text('App'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
