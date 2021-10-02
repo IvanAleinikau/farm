@@ -3,6 +3,7 @@ import 'package:farm/core/bloc/weather_bloc/weather_state.dart';
 import 'package:farm/core/models/weather_model.dart';
 import 'package:farm/core/service/weather_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(InitWeatherState());
@@ -18,8 +19,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   Stream<WeatherState> _fetchWeather(FetchWeather event) async* {
     yield Loading();
     try {
-      final Weather weather = await WeatherService.fetchCurrentWeather(city: event.city);
-      final List<Weather> hourlyWeather = await WeatherService.fetchHourlyWeather(city: event.city);
+      final Weather weather =
+          await WeatherService.fetchCurrentWeather(city: event.city);
+      final List<Weather> hourlyWeather =
+          await WeatherService.fetchHourlyWeather(city: event.city);
       yield WeatherState.content(weather, hourlyWeather);
     } catch (e) {
       print(e);
@@ -27,19 +30,27 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     }
   }
 
-  Stream<WeatherState> _fetchWeatherCurrentPosition(FetchWeatherCurrentPosition event) async* {
-    /*LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-      Position? lastKnownPosition = await Geolocator.getLastKnownPosition();
-      if (lastKnownPosition != null) {
-        add(WeatherRequested(lat: lastKnownPosition.latitude.toString(), lon: lastKnownPosition.longitude.toString()));
-      } else {
-        Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-        add(FetchWeather(lat: position.latitude.toString(), lon: position.longitude.toString()));
-      }
+  Stream<WeatherState> _fetchWeatherCurrentPosition(
+      FetchWeatherCurrentPosition event) async* {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
+      yield Loading();
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      final Weather weather = await WeatherService.fetchCurrentPositionWeather(
+        lat: position.latitude.toString(),
+        lon: position.longitude.toString(),
+      );
+      final List<Weather> hourlyWeather =
+          await WeatherService.fetchHourlyCurrentPositionWeather(
+        lat: position.latitude.toString(),
+        lon: position.longitude.toString(),
+      );
+      yield WeatherState.content(weather, hourlyWeather);
     } else {
       await Geolocator.requestPermission();
-      add(WeatherCurrentPositionRequested());
-    }*/
+      //add(WeatherCurrentPositionRequested());
+    }
   }
 }

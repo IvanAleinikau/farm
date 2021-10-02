@@ -30,7 +30,9 @@ class _WeatherPageState extends State<WeatherPage> {
               actions: [
                 IconButton(
                   icon: Icon(Icons.my_location),
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<WeatherBloc>(context).add(FetchWeatherCurrentPosition());
+                  },
                 ),
                 IconButton(
                   icon: Icon(Icons.search),
