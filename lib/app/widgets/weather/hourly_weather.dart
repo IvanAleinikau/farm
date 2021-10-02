@@ -1,7 +1,6 @@
 import 'package:farm/app/widgets/weather/weather_card.dart';
 import 'package:farm/core/models/weather_model.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class HourlyWeather extends StatelessWidget {
   final List<Weather> hourlyWeather;

@@ -1,11 +1,12 @@
 import 'package:farm/app/widgets/weather/main_screen_wrapper.dart';
-import 'package:farm/core/bloc/weather_bloc.dart';
-import 'package:farm/core/bloc/weather_event.dart';
-import 'package:farm/core/bloc/weather_state.dart';
+import 'package:farm/core/bloc/weather_bloc/weather_bloc.dart';
+import 'package:farm/core/bloc/weather_bloc/weather_event.dart';
+import 'package:farm/core/bloc/weather_bloc/weather_state.dart';
 import 'package:farm/core/models/weather_model.dart';
 import 'package:farm/core/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _WeatherPageState extends State<WeatherPage> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Weather'),
+              title: Text('weather'.tr),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               actions: [

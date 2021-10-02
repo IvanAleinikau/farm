@@ -1,9 +1,8 @@
-import 'package:farm/core/bloc/weather_event.dart';
-import 'package:farm/core/bloc/weather_state.dart';
+import 'package:farm/core/bloc/weather_bloc/weather_event.dart';
+import 'package:farm/core/bloc/weather_bloc/weather_state.dart';
 import 'package:farm/core/models/weather_model.dart';
 import 'package:farm/core/service/weather_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(InitWeatherState());

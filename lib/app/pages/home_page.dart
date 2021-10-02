@@ -1,7 +1,9 @@
+import 'package:farm/app/pages/index.dart';
 import 'package:farm/app/pages/weather_page.dart';
 import 'package:farm/app/theme/color_palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,9 +23,7 @@ class _HomePageState extends State<HomePage> {
     Text(
       'Calendar',
     ),
-    Text(
-      'Settings',
-    ),
+    SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,36 +39,34 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'home'.tr,
             backgroundColor: ColorPalette.bottomBarColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.cloud_sun_fill),
-            label: 'Weather',
+            label: 'weather'.tr,
             backgroundColor: ColorPalette.bottomBarColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.calendar_today),
-            label: 'Calendar',
+            label: 'calendar'.tr,
             backgroundColor: ColorPalette.bottomBarColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'settings'.tr,
             backgroundColor: ColorPalette.bottomBarColor,
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: ColorPalette.selectedItemColor,
         onTap: _onItemTapped,
-        unselectedIconTheme: IconThemeData(
-          color: ColorPalette.unselectedItemColor
-        ),
+        unselectedIconTheme:
+            IconThemeData(color: ColorPalette.unselectedItemColor),
       ),
     );
   }
 }
-

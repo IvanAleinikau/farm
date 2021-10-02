@@ -22,7 +22,6 @@ class WeatherService {
     final response = await http.post(url);
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
-      print(jsonData);
       final List<Weather> data = (jsonData['list'] as List<dynamic>)
           .map((item) => Weather.fromJsonForecast(item)).toList();
       return data;
