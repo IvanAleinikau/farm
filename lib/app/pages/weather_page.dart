@@ -1,3 +1,5 @@
+import 'package:farm/app/theme/color_palette.dart';
+import 'package:farm/app/theme/text_style.dart';
 import 'package:farm/app/widgets/weather/main_screen_wrapper.dart';
 import 'package:farm/core/bloc/weather_bloc/weather_bloc.dart';
 import 'package:farm/core/bloc/weather_bloc/weather_event.dart';
@@ -24,14 +26,18 @@ class _WeatherPageState extends State<WeatherPage> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('weather'.tr),
+              title: Text(
+                'weather'.tr,
+                style: Style.montserratStyle,
+              ),
               centerTitle: true,
-              backgroundColor: Colors.transparent,
+              backgroundColor: ColorPalette.appBarColor,
               actions: [
                 IconButton(
                   icon: Icon(Icons.my_location),
                   onPressed: () {
-                    BlocProvider.of<WeatherBloc>(context).add(FetchWeatherCurrentPosition());
+                    BlocProvider.of<WeatherBloc>(context)
+                        .add(FetchWeatherCurrentPosition());
                   },
                 ),
                 IconButton(
@@ -41,7 +47,8 @@ class _WeatherPageState extends State<WeatherPage> {
                       context: context,
                       delegate: MySearchDelegate(
                         (query) {
-                          BlocProvider.of<WeatherBloc>(context).add(FetchWeather(city: query));
+                          BlocProvider.of<WeatherBloc>(context)
+                              .add(FetchWeather(city: query));
                         },
                       ),
                     );
@@ -51,7 +58,8 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
             body: state.when(
               initWeatherState: () {
-                BlocProvider.of<WeatherBloc>(context).add(FetchWeather(city: 'Brest'));
+                BlocProvider.of<WeatherBloc>(context)
+                    .add(FetchWeather(city: 'Brest'));
                 return Center(
                   child: CircularProgressIndicator(),
                 );
@@ -64,7 +72,10 @@ class _WeatherPageState extends State<WeatherPage> {
               content: (Weather weather, List<Weather> hourlyWeather) {
                 return Padding(
                   padding: EdgeInsets.only(top: 64),
-                  child: MainScreenWrapper(weather: weather, hourlyWeather: hourlyWeather),
+                  child: MainScreenWrapper(
+                    weather: weather,
+                    hourlyWeather: hourlyWeather,
+                  ),
                 );
               },
               contentError: () {

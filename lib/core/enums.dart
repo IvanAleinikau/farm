@@ -1,5 +1,5 @@
 enum Pages{
-  settings,
+  product,
   weather,
   calendar,
   home,

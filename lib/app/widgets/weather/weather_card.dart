@@ -28,7 +28,10 @@ class WeatherCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(this.title),
-              Image.network("http://openweathermap.org/img/wn/${this.iconCode}@2x.png", scale: this.iconScale),
+              Image.network(
+                "http://openweathermap.org/img/wn/${this.iconCode}@2x.png",
+                scale: this.iconScale,
+              ),
               Text(
                 '${this.temperature}°',
                 style: TextStyle(
@@ -36,7 +39,12 @@ class WeatherCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(this.date),
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                child: Text(
+                  this.date,
+                ),
+              ),
             ],
           ),
         ),

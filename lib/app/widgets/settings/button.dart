@@ -1,18 +1,21 @@
+import 'package:farm/app/theme/color_palette.dart';
+import 'package:farm/app/theme/text_style.dart';
 import 'package:farm/core/enums.dart';
 import 'package:farm/core/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:get/get.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String image;
   final EdgeInsets padding;
   final Pages page;
 
   const CustomButton({
     Key? key,
     required this.title,
-    required this.icon,
+    required this.image,
     required this.padding,
     required this.page,
   }) : super(key: key);
@@ -21,16 +24,27 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(25),
-        child: Card(
-          child: ListTile(
-            title: Text(title),
-            leading: Icon(icon),
-            trailing: Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              GetIt.instance<NavigatorService>().navigateTo(page);
-            },
+      child: GestureDetector(
+        onTap: () {
+          GetIt.instance<NavigatorService>().navigateTo(page);
+        },
+        child: Container(
+          height: 150,
+          color: ColorPalette.buttonColor,
+          child: Row(
+            children: [
+              Container(
+                child: Image(
+                  image: AssetImage(image),
+                ),
+              ),
+              Container(
+                child: Text(
+                  title.tr,
+                  style: Style.productStyle,
+                ),
+              ),
+            ],
           ),
         ),
       ),

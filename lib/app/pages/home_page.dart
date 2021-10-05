@@ -1,6 +1,7 @@
 import 'package:farm/app/pages/index.dart';
 import 'package:farm/app/pages/weather_page.dart';
 import 'package:farm/app/theme/color_palette.dart';
+import 'package:farm/app/theme/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     Text(
       'Calendar',
     ),
-    SettingsPage(),
+    ProductPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -56,16 +57,18 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: ColorPalette.bottomBarColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'settings'.tr,
+            icon: Icon(CupertinoIcons.collections_solid),
+            label: 'product'.tr,
             backgroundColor: ColorPalette.bottomBarColor,
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: ColorPalette.selectedItemColor,
         onTap: _onItemTapped,
-        unselectedIconTheme:
-            IconThemeData(color: ColorPalette.unselectedItemColor),
+        unselectedIconTheme: IconThemeData(
+          color: ColorPalette.unselectedItemColor,
+        ),
+        selectedLabelStyle: Style.montserratStyle,
       ),
     );
   }
