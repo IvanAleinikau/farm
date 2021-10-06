@@ -34,7 +34,10 @@ class CustomButton extends StatelessWidget {
           child: Row(
             children: [
               Container(
+                padding: EdgeInsets.only(left: 20),
                 child: Image(
+                  height: 120,
+                  width: 120,
                   image: AssetImage(image),
                 ),
               ),

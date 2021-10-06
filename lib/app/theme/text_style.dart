@@ -11,4 +11,8 @@ class Style {
   static const montserratStyle = TextStyle(
     fontFamily: 'Montserrat',
   );
+
+  static const calendarDaysStyle = TextStyle(
+    color: ColorPalette.calendarDaysColor,
+  );
 }

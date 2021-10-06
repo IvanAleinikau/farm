@@ -1,3 +1,4 @@
+import 'package:farm/app/pages/calendar_page.dart';
 import 'package:farm/app/pages/index.dart';
 import 'package:farm/app/pages/weather_page.dart';
 import 'package:farm/app/theme/color_palette.dart';
@@ -21,9 +22,7 @@ class _HomePageState extends State<HomePage> {
       'Home',
     ),
     WeatherPage(),
-    Text(
-      'Calendar',
-    ),
+    CalendarPage(),
     ProductPage(),
   ];
 
