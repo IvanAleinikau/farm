@@ -4,8 +4,10 @@ import 'package:farm/core/get_pages.dart';
 import 'package:farm/core/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
+  initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
   SetupGetIt.setup();
   runApp(App());

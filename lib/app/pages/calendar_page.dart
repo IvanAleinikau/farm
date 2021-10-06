@@ -1,7 +1,12 @@
 import 'package:farm/app/theme/color_palette.dart';
 import 'package:farm/app/theme/text_style.dart';
+import 'package:farm/core/bloc/event_bloc/event_bloc.dart';
+import 'package:farm/core/bloc/event_bloc/event_event.dart';
+import 'package:farm/core/bloc/event_bloc/event_state.dart';
+import 'package:farm/core/models/event_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';
 
@@ -17,235 +22,243 @@ class _CalendarPageState extends State<CalendarPage> {
   var _focusedCalendarDate = DateTime.now();
   final _initialCalendarDate = DateTime(2000);
   final _lastCalendarDate = DateTime(2050);
-  DateTime? selectedCalendarDate;
-  final titleController = TextEditingController();
-  final descpController = TextEditingController();
+  final eventController = TextEditingController();
 
-  late Map<DateTime, List<MyEvents>> mySelectedEvents;
+  late DateTime selectedCalendarDate;
 
   @override
   void initState() {
     selectedCalendarDate = _focusedCalendarDate;
-    mySelectedEvents = {};
     super.initState();
   }
 
   @override
   void dispose() {
-    titleController.dispose();
-    descpController.dispose();
+    eventController.dispose();
     super.dispose();
-  }
-
-  List<MyEvents> _listOfDayEvents(DateTime dateTime) {
-    return mySelectedEvents[dateTime] ?? [];
-  }
-
-  _showAddEventDialog() async {
-    await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('New Event'),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  buildTextField(
-                      controller: titleController, hint: 'Enter Title'),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  buildTextField(
-                      controller: descpController, hint: 'Enter Description'),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (titleController.text.isEmpty &&
-                        descpController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter title & description'),
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
-                      //Navigator.pop(context);
-                      return;
-                    } else {
-                      setState(() {
-                        if (mySelectedEvents[selectedCalendarDate] != null) {
-                          mySelectedEvents[selectedCalendarDate]?.add(MyEvents(
-                              eventTitle: titleController.text,
-                              eventDescp: descpController.text));
-                        } else {
-                          mySelectedEvents[selectedCalendarDate!] = [
-                            MyEvents(
-                                eventTitle: titleController.text,
-                                eventDescp: descpController.text)
-                          ];
-                        }
-                      });
-
-                      titleController.clear();
-                      descpController.clear();
-
-                      Navigator.pop(context);
-                      return;
-                    }
-                  },
-                  child: const Text('Add'),
-                ),
-              ],
-            ));
-  }
-
-  Widget buildTextField(
-      {String? hint, required TextEditingController controller}) {
-    return TextField(
-      controller: controller,
-      textCapitalization: TextCapitalization.words,
-      decoration: InputDecoration(
-        labelText: hint ?? '',
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1.5),
-          borderRadius: BorderRadius.circular(
-            10.0,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.green, width: 1.5),
-          borderRadius: BorderRadius.circular(
-            10.0,
-          ),
-        ),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'calendar'.tr,
-          style: Style.montserratStyle,
-        ),
-        backgroundColor: ColorPalette.appBarColor,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddEventDialog(),
-        child: Icon(CupertinoIcons.plus),
-        backgroundColor: ColorPalette.calendarAddEventColor,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Card(
-                elevation: 5.0,
-                child: TableCalendar(
-                  locale: 'en_US',
-                  focusedDay: _focusedCalendarDate,
-                  firstDay: _initialCalendarDate,
-                  lastDay: _lastCalendarDate,
-                  calendarFormat: CalendarFormat.month,
-                  weekendDays: const [DateTime.sunday, 6],
-                  startingDayOfWeek: StartingDayOfWeek.monday,
-                  daysOfWeekHeight: 45.0,
-                  rowHeight: 60.0,
-                  eventLoader: _listOfDayEvents,
-                  headerStyle: HeaderStyle(
-                    formatButtonVisible: false,
-                    titleTextStyle: TextStyle(
-                      color: ColorPalette.calendarTitleColor,
-                      fontSize: 20.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: ColorPalette.calendarAppBarColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                    ),
-                    leftChevronIcon: Icon(
-                      Icons.chevron_left,
-                      color: ColorPalette.calendarArrowColor,
-                      size: 28,
-                    ),
-                    rightChevronIcon: Icon(
-                      Icons.chevron_right,
-                      color: ColorPalette.calendarArrowColor,
-                      size: 28,
-                    ),
-                  ),
-                  daysOfWeekStyle: const DaysOfWeekStyle(
-                    weekendStyle: Style.calendarDaysStyle,
-                  ),
-                  calendarStyle: const CalendarStyle(
-                    weekendTextStyle: Style.calendarDaysStyle,
-                    todayDecoration: BoxDecoration(
-                      color: ColorPalette.calendarTodayDayColor,
-                      shape: BoxShape.circle,
-                    ),
-                    selectedDecoration: BoxDecoration(
-                      color: ColorPalette.calendarSelectedDayColor,
-                      shape: BoxShape.circle,
-                    ),
-                    markerDecoration: BoxDecoration(
-                      color: ColorPalette.calendarMarkerEventColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  selectedDayPredicate: (currentSelectedDate) {
-                    return (isSameDay(
-                      selectedCalendarDate!,
-                      currentSelectedDate,
-                    ));
-                  },
-                  onDaySelected: (selectedDay, focusedDay) {
-                    if (!isSameDay(selectedCalendarDate, selectedDay)) {
-                      setState(() {
-                        selectedCalendarDate = selectedDay;
-                        _focusedCalendarDate = focusedDay;
-                      });
-                    }
-                  },
-                ),
+    return BlocProvider<EventBloc>(
+      create: (context) => EventBloc(),
+      child: BlocBuilder<EventBloc, EventState>(
+        builder: (context, state) {
+          final EventBloc _bloc = BlocProvider.of<EventBloc>(context);
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                'calendar'.tr,
+                style: Style.montserratStyle,
               ),
+              backgroundColor: ColorPalette.appBarColor,
             ),
-            ..._listOfDayEvents(selectedCalendarDate!).map(
-              (myEvents) => ListTile(
-                leading: const Icon(
-                  Icons.done,
-                  color: Colors.grey,
-                ),
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text('Event Title:   ${myEvents.eventTitle}'),
-                ),
-                subtitle: Text('Description:   ${myEvents.eventDescp}'),
-              ),
+            body: state.when(
+              initEventState: () {
+                _bloc.add(FetchEvents());
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: ColorPalette.appBarColor,
+                  ),
+                );
+              },
+              content: (_mySelectedEvents) {
+                List<Event> _listOfDayEvents(DateTime dateTime) {
+                  return _mySelectedEvents[dateTime] ?? [];
+                }
+
+                return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () {
+                      _showAddEventDialog(_bloc);
+                    },
+                    child: Icon(CupertinoIcons.plus),
+                    backgroundColor: ColorPalette.calendarAddEventColor,
+                  ),
+                  body: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Card(
+                            elevation: 5.0,
+                            child: TableCalendar(
+                              locale: 'locale'.tr,
+                              focusedDay: _focusedCalendarDate,
+                              firstDay: _initialCalendarDate,
+                              lastDay: _lastCalendarDate,
+                              calendarFormat: CalendarFormat.month,
+                              weekendDays: const [DateTime.sunday, 6],
+                              startingDayOfWeek: StartingDayOfWeek.monday,
+                              daysOfWeekHeight: 45.0,
+                              rowHeight: 60.0,
+                              eventLoader: _listOfDayEvents,
+                              headerStyle: HeaderStyle(
+                                formatButtonVisible: false,
+                                titleTextStyle: TextStyle(
+                                  color: ColorPalette.calendarTitleColor,
+                                  fontSize: 20.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: ColorPalette.calendarAppBarColor,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                  ),
+                                ),
+                                leftChevronIcon: Icon(
+                                  Icons.chevron_left,
+                                  color: ColorPalette.calendarArrowColor,
+                                  size: 28,
+                                ),
+                                rightChevronIcon: Icon(
+                                  Icons.chevron_right,
+                                  color: ColorPalette.calendarArrowColor,
+                                  size: 28,
+                                ),
+                              ),
+                              daysOfWeekStyle: const DaysOfWeekStyle(
+                                weekendStyle: Style.calendarDaysStyle,
+                              ),
+                              calendarStyle: const CalendarStyle(
+                                weekendTextStyle: Style.calendarDaysStyle,
+                                todayDecoration: BoxDecoration(
+                                  color: ColorPalette.calendarTodayDayColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                selectedDecoration: BoxDecoration(
+                                  color: ColorPalette.calendarSelectedDayColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                markerDecoration: BoxDecoration(
+                                  color: ColorPalette.calendarMarkerEventColor,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              selectedDayPredicate: (currentSelectedDate) {
+                                return (isSameDay(
+                                  selectedCalendarDate,
+                                  currentSelectedDate,
+                                ));
+                              },
+                              onDaySelected: (selectedDay, focusedDay) {
+                                if (!isSameDay(
+                                    selectedCalendarDate, selectedDay)) {
+                                  setState(() {
+                                    selectedCalendarDate = selectedDay;
+                                    _focusedCalendarDate = focusedDay;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        ..._listOfDayEvents(selectedCalendarDate).map(
+                          (event) => Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Icon(
+                                    Icons.arrow_right_sharp,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    '${event.event}',
+                                    style: Style.montserratStyle,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.close),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
-}
 
-class MyEvents {
-  final String eventTitle;
-  final String eventDescp;
-
-  MyEvents({required this.eventTitle, required this.eventDescp});
-
-  @override
-  String toString() => eventTitle;
+  void _showAddEventDialog(EventBloc _bloc) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'new_event'.tr,
+          style: Style.montserratStyle,
+        ),
+        content: Container(
+          child: TextField(
+            maxLines: 2,
+            controller: eventController,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: InputDecoration(
+              labelText: 'enter_event'.tr,
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorPalette.focusedBorderColor,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorPalette.enabledBorderColor,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              eventController.clear();
+              Navigator.pop(context);
+            },
+            child: Text('cancel'.tr),
+          ),
+          TextButton(
+            onPressed: () {
+              if (eventController.text.isEmpty) {
+                _bloc.add(FetchEvents());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: ColorPalette.appBarColor,
+                    content: Text(
+                      'please_enter_event'.tr,
+                      style: Style.montserratStyle,
+                    ),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              } else {
+                _bloc.add(MakeEvent(
+                    event: eventController.text, date: selectedCalendarDate));
+                eventController.clear();
+                Navigator.pop(context);
+              }
+            },
+            child: Text('add'.tr),
+          ),
+        ],
+      ),
+    );
+  }
 }

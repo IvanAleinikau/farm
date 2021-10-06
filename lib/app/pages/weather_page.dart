@@ -61,12 +61,16 @@ class _WeatherPageState extends State<WeatherPage> {
                 BlocProvider.of<WeatherBloc>(context)
                     .add(FetchWeather(city: 'Brest'));
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: ColorPalette.appBarColor,
+                  ),
                 );
               },
               loading: () {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: ColorPalette.appBarColor,
+                  ),
                 );
               },
               content: (Weather weather, List<Weather> hourlyWeather) {

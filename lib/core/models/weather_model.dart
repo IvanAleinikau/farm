@@ -25,7 +25,7 @@ class Weather {
 
   factory Weather.fromJsonForecast(Map<String, dynamic> json) {
     return Weather(
-        cityName: '',
+      cityName: '',
       temperature: double.parse(json['main']['temp'].toString()).toInt(),
       iconCode: json['weather'][0]['icon'],
       description: json['weather'][0]['main'],

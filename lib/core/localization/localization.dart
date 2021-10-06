@@ -4,6 +4,7 @@ class Localization extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'locale': 'en_US',
           'home': 'Home',
           'weather': 'Weather',
           'calendar': 'Calendar',
@@ -14,8 +15,14 @@ class Localization extends Translations {
           'fertilizer': 'Fertilizer',
           'seed': 'Seed',
           'fuel': 'Fuel',
+          'new_event': 'New event',
+          'enter_event': 'Enter event',
+          'cancel': 'Cancel',
+          'add': 'Add',
+          'please_enter_event': 'Please enter event',
         },
         'ru_RUS': {
+          'locale': 'ru_RU',
           'home': 'Главная страница',
           'weather': 'Погода',
           'calendar': 'Календарь',
@@ -26,6 +33,10 @@ class Localization extends Translations {
           'fertilizer': 'Удобрения',
           'seed': 'Семена',
           'fuel': 'Топливо',
+          'new_event': 'Новое событие',
+          'enter_event': 'Введите событие',
+          'cancel': 'Отмена',
+          'add': 'Добавить',
         }
       };
 }
