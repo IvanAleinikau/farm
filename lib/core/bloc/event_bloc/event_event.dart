@@ -1,3 +1,4 @@
+import 'package:farm/core/models/event_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'event_event.freezed.dart';
@@ -11,5 +12,9 @@ abstract class EventEvent with _$EventEvent {
 
   factory EventEvent.fetchEvents() = FetchEvents;
 
-  factory EventEvent.deleteEvent() = DeleteEvent;
+  factory EventEvent.updateEvent(Event event) = UpdateEvent;
+
+  factory EventEvent.deleteEvent(
+    int index,
+  ) = DeleteEvent;
 }

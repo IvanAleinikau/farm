@@ -27,8 +27,16 @@ class _$EventEventTearOff {
     return FetchEvents();
   }
 
-  DeleteEvent deleteEvent() {
-    return DeleteEvent();
+  UpdateEvent updateEvent(Event event) {
+    return UpdateEvent(
+      event,
+    );
+  }
+
+  DeleteEvent deleteEvent(int index) {
+    return DeleteEvent(
+      index,
+    );
   }
 }
 
@@ -41,14 +49,16 @@ mixin _$EventEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
-    required TResult Function() deleteEvent,
+    required TResult Function(Event event) updateEvent,
+    required TResult Function(int index) deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
-    TResult Function()? deleteEvent,
+    TResult Function(Event event)? updateEvent,
+    TResult Function(int index)? deleteEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +66,7 @@ mixin _$EventEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeEvent value) makeEvent,
     required TResult Function(FetchEvents value) fetchEvents,
+    required TResult Function(UpdateEvent value) updateEvent,
     required TResult Function(DeleteEvent value) deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +74,7 @@ mixin _$EventEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeEvent value)? makeEvent,
     TResult Function(FetchEvents value)? fetchEvents,
+    TResult Function(UpdateEvent value)? updateEvent,
     TResult Function(DeleteEvent value)? deleteEvent,
     required TResult orElse(),
   }) =>
@@ -160,7 +172,8 @@ class _$MakeEvent implements MakeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
-    required TResult Function() deleteEvent,
+    required TResult Function(Event event) updateEvent,
+    required TResult Function(int index) deleteEvent,
   }) {
     return makeEvent(event, date);
   }
@@ -170,7 +183,8 @@ class _$MakeEvent implements MakeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
-    TResult Function()? deleteEvent,
+    TResult Function(Event event)? updateEvent,
+    TResult Function(int index)? deleteEvent,
     required TResult orElse(),
   }) {
     if (makeEvent != null) {
@@ -184,6 +198,7 @@ class _$MakeEvent implements MakeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeEvent value) makeEvent,
     required TResult Function(FetchEvents value) fetchEvents,
+    required TResult Function(UpdateEvent value) updateEvent,
     required TResult Function(DeleteEvent value) deleteEvent,
   }) {
     return makeEvent(this);
@@ -194,6 +209,7 @@ class _$MakeEvent implements MakeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeEvent value)? makeEvent,
     TResult Function(FetchEvents value)? fetchEvents,
+    TResult Function(UpdateEvent value)? updateEvent,
     TResult Function(DeleteEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
@@ -256,7 +272,8 @@ class _$FetchEvents implements FetchEvents {
   TResult when<TResult extends Object?>({
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
-    required TResult Function() deleteEvent,
+    required TResult Function(Event event) updateEvent,
+    required TResult Function(int index) deleteEvent,
   }) {
     return fetchEvents();
   }
@@ -266,7 +283,8 @@ class _$FetchEvents implements FetchEvents {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
-    TResult Function()? deleteEvent,
+    TResult Function(Event event)? updateEvent,
+    TResult Function(int index)? deleteEvent,
     required TResult orElse(),
   }) {
     if (fetchEvents != null) {
@@ -280,6 +298,7 @@ class _$FetchEvents implements FetchEvents {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeEvent value) makeEvent,
     required TResult Function(FetchEvents value) fetchEvents,
+    required TResult Function(UpdateEvent value) updateEvent,
     required TResult Function(DeleteEvent value) deleteEvent,
   }) {
     return fetchEvents(this);
@@ -290,6 +309,7 @@ class _$FetchEvents implements FetchEvents {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeEvent value)? makeEvent,
     TResult Function(FetchEvents value)? fetchEvents,
+    TResult Function(UpdateEvent value)? updateEvent,
     TResult Function(DeleteEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
@@ -305,10 +325,143 @@ abstract class FetchEvents implements EventEvent {
 }
 
 /// @nodoc
+abstract class $UpdateEventCopyWith<$Res> {
+  factory $UpdateEventCopyWith(
+          UpdateEvent value, $Res Function(UpdateEvent) then) =
+      _$UpdateEventCopyWithImpl<$Res>;
+  $Res call({Event event});
+
+  $EventCopyWith<$Res> get event;
+}
+
+/// @nodoc
+class _$UpdateEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
+    implements $UpdateEventCopyWith<$Res> {
+  _$UpdateEventCopyWithImpl(
+      UpdateEvent _value, $Res Function(UpdateEvent) _then)
+      : super(_value, (v) => _then(v as UpdateEvent));
+
+  @override
+  UpdateEvent get _value => super._value as UpdateEvent;
+
+  @override
+  $Res call({
+    Object? event = freezed,
+  }) {
+    return _then(UpdateEvent(
+      event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as Event,
+    ));
+  }
+
+  @override
+  $EventCopyWith<$Res> get event {
+    return $EventCopyWith<$Res>(_value.event, (value) {
+      return _then(_value.copyWith(event: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UpdateEvent implements UpdateEvent {
+  _$UpdateEvent(this.event);
+
+  @override
+  final Event event;
+
+  @override
+  String toString() {
+    return 'EventEvent.updateEvent(event: $event)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateEvent &&
+            (identical(other.event, event) ||
+                const DeepCollectionEquality().equals(other.event, event)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(event);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateEventCopyWith<UpdateEvent> get copyWith =>
+      _$UpdateEventCopyWithImpl<UpdateEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function() fetchEvents,
+    required TResult Function(Event event) updateEvent,
+    required TResult Function(int index) deleteEvent,
+  }) {
+    return updateEvent(event);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function()? fetchEvents,
+    TResult Function(Event event)? updateEvent,
+    TResult Function(int index)? deleteEvent,
+    required TResult orElse(),
+  }) {
+    if (updateEvent != null) {
+      return updateEvent(event);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakeEvent value) makeEvent,
+    required TResult Function(FetchEvents value) fetchEvents,
+    required TResult Function(UpdateEvent value) updateEvent,
+    required TResult Function(DeleteEvent value) deleteEvent,
+  }) {
+    return updateEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakeEvent value)? makeEvent,
+    TResult Function(FetchEvents value)? fetchEvents,
+    TResult Function(UpdateEvent value)? updateEvent,
+    TResult Function(DeleteEvent value)? deleteEvent,
+    required TResult orElse(),
+  }) {
+    if (updateEvent != null) {
+      return updateEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateEvent implements EventEvent {
+  factory UpdateEvent(Event event) = _$UpdateEvent;
+
+  Event get event => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateEventCopyWith<UpdateEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class $DeleteEventCopyWith<$Res> {
   factory $DeleteEventCopyWith(
           DeleteEvent value, $Res Function(DeleteEvent) then) =
       _$DeleteEventCopyWithImpl<$Res>;
+  $Res call({int index});
 }
 
 /// @nodoc
@@ -320,34 +473,59 @@ class _$DeleteEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
 
   @override
   DeleteEvent get _value => super._value as DeleteEvent;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(DeleteEvent(
+      index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DeleteEvent implements DeleteEvent {
-  _$DeleteEvent();
+  _$DeleteEvent(this.index);
+
+  @override
+  final int index;
 
   @override
   String toString() {
-    return 'EventEvent.deleteEvent()';
+    return 'EventEvent.deleteEvent(index: $index)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DeleteEvent);
+    return identical(this, other) ||
+        (other is DeleteEvent &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteEventCopyWith<DeleteEvent> get copyWith =>
+      _$DeleteEventCopyWithImpl<DeleteEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
-    required TResult Function() deleteEvent,
+    required TResult Function(Event event) updateEvent,
+    required TResult Function(int index) deleteEvent,
   }) {
-    return deleteEvent();
+    return deleteEvent(index);
   }
 
   @override
@@ -355,11 +533,12 @@ class _$DeleteEvent implements DeleteEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
-    TResult Function()? deleteEvent,
+    TResult Function(Event event)? updateEvent,
+    TResult Function(int index)? deleteEvent,
     required TResult orElse(),
   }) {
     if (deleteEvent != null) {
-      return deleteEvent();
+      return deleteEvent(index);
     }
     return orElse();
   }
@@ -369,6 +548,7 @@ class _$DeleteEvent implements DeleteEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeEvent value) makeEvent,
     required TResult Function(FetchEvents value) fetchEvents,
+    required TResult Function(UpdateEvent value) updateEvent,
     required TResult Function(DeleteEvent value) deleteEvent,
   }) {
     return deleteEvent(this);
@@ -379,6 +559,7 @@ class _$DeleteEvent implements DeleteEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeEvent value)? makeEvent,
     TResult Function(FetchEvents value)? fetchEvents,
+    TResult Function(UpdateEvent value)? updateEvent,
     TResult Function(DeleteEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
@@ -390,5 +571,10 @@ class _$DeleteEvent implements DeleteEvent {
 }
 
 abstract class DeleteEvent implements EventEvent {
-  factory DeleteEvent() = _$DeleteEvent;
+  factory DeleteEvent(int index) = _$DeleteEvent;
+
+  int get index => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteEventCopyWith<DeleteEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }

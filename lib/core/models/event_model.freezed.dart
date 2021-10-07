@@ -20,11 +20,16 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 class _$EventTearOff {
   const _$EventTearOff();
 
-  _Event call({int? id, required String event, required DateTime date}) {
+  _Event call(
+      {int? id,
+      required String event,
+      required DateTime date,
+      required int active}) {
     return _Event(
       id: id,
       event: event,
       date: date,
+      active: active,
     );
   }
 
@@ -41,6 +46,7 @@ mixin _$Event {
   int? get id => throw _privateConstructorUsedError;
   String get event => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
+  int get active => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +57,7 @@ mixin _$Event {
 abstract class $EventCopyWith<$Res> {
   factory $EventCopyWith(Event value, $Res Function(Event) then) =
       _$EventCopyWithImpl<$Res>;
-  $Res call({int? id, String event, DateTime date});
+  $Res call({int? id, String event, DateTime date, int active});
 }
 
 /// @nodoc
@@ -67,6 +73,7 @@ class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
     Object? id = freezed,
     Object? event = freezed,
     Object? date = freezed,
+    Object? active = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -81,6 +88,10 @@ class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -90,7 +101,7 @@ abstract class _$EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   factory _$EventCopyWith(_Event value, $Res Function(_Event) then) =
       __$EventCopyWithImpl<$Res>;
   @override
-  $Res call({int? id, String event, DateTime date});
+  $Res call({int? id, String event, DateTime date, int active});
 }
 
 /// @nodoc
@@ -107,6 +118,7 @@ class __$EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
     Object? id = freezed,
     Object? event = freezed,
     Object? date = freezed,
+    Object? active = freezed,
   }) {
     return _then(_Event(
       id: id == freezed
@@ -121,6 +133,10 @@ class __$EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -128,7 +144,8 @@ class __$EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Event implements _Event {
-  _$_Event({this.id, required this.event, required this.date});
+  _$_Event(
+      {this.id, required this.event, required this.date, required this.active});
 
   factory _$_Event.fromJson(Map<String, dynamic> json) =>
       _$_$_EventFromJson(json);
@@ -139,10 +156,12 @@ class _$_Event implements _Event {
   final String event;
   @override
   final DateTime date;
+  @override
+  final int active;
 
   @override
   String toString() {
-    return 'Event(id: $id, event: $event, date: $date)';
+    return 'Event(id: $id, event: $event, date: $date, active: $active)';
   }
 
   @override
@@ -154,7 +173,9 @@ class _$_Event implements _Event {
             (identical(other.event, event) ||
                 const DeepCollectionEquality().equals(other.event, event)) &&
             (identical(other.date, date) ||
-                const DeepCollectionEquality().equals(other.date, date)));
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
   }
 
   @override
@@ -162,7 +183,8 @@ class _$_Event implements _Event {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(event) ^
-      const DeepCollectionEquality().hash(date);
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(active);
 
   @JsonKey(ignore: true)
   @override
@@ -176,8 +198,11 @@ class _$_Event implements _Event {
 }
 
 abstract class _Event implements Event {
-  factory _Event({int? id, required String event, required DateTime date}) =
-      _$_Event;
+  factory _Event(
+      {int? id,
+      required String event,
+      required DateTime date,
+      required int active}) = _$_Event;
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
@@ -187,6 +212,8 @@ abstract class _Event implements Event {
   String get event => throw _privateConstructorUsedError;
   @override
   DateTime get date => throw _privateConstructorUsedError;
+  @override
+  int get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EventCopyWith<_Event> get copyWith => throw _privateConstructorUsedError;

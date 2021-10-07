@@ -11,6 +11,7 @@ _$_Event _$_$_EventFromJson(Map<String, dynamic> json) {
     id: json['id'] as int?,
     event: json['event'] as String,
     date: DateTime.parse(json['date'] as String),
+    active: json['active'] as int,
   );
 }
 
@@ -18,4 +19,5 @@ Map<String, dynamic> _$_$_EventToJson(_$_Event instance) => <String, dynamic>{
       'id': instance.id,
       'event': instance.event,
       'date': instance.date.toIso8601String(),
+      'active': instance.active,
     };

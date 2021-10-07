@@ -53,6 +53,14 @@ class _CalendarPageState extends State<CalendarPage> {
                 style: Style.montserratStyle,
               ),
               backgroundColor: ColorPalette.appBarColor,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    _showAddEventDialog(_bloc);
+                  },
+                  icon: Icon(CupertinoIcons.plus),
+                ),
+              ],
             ),
             body: state.when(
               initEventState: () {
@@ -65,17 +73,10 @@ class _CalendarPageState extends State<CalendarPage> {
               },
               content: (_mySelectedEvents) {
                 List<Event> _listOfDayEvents(DateTime dateTime) {
-                  return _mySelectedEvents[dateTime] ?? [];
+                  return _bloc.mySelectedEvents[dateTime] ?? [];
                 }
 
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () {
-                      _showAddEventDialog(_bloc);
-                    },
-                    child: Icon(CupertinoIcons.plus),
-                    backgroundColor: ColorPalette.calendarAddEventColor,
-                  ),
                   body: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -160,22 +161,51 @@ class _CalendarPageState extends State<CalendarPage> {
                               children: [
                                 Expanded(
                                   flex: 1,
-                                  child: Icon(
-                                    Icons.arrow_right_sharp,
-                                  ),
+                                  child: event.active != 0
+                                      ? IconButton(
+                                          color: Colors.yellow.shade800,
+                                          iconSize: 30,
+                                          icon: Icon(CupertinoIcons
+                                              .checkmark_alt_circle),
+                                          onPressed: () {
+                                            _bloc.add(UpdateEvent(Event(
+                                              id: event.id,
+                                              event: event.event,
+                                              date: event.date,
+                                              active: 0,
+                                            )));
+                                          },
+                                        )
+                                      : IconButton(
+                                          iconSize: 30,
+                                          icon: Icon(CupertinoIcons.circle),
+                                          onPressed: () {
+                                            _bloc.add(UpdateEvent(Event(
+                                              id: event.id,
+                                              event: event.event,
+                                              date: event.date,
+                                              active: 1,
+                                            )));
+                                          },
+                                        ),
                                 ),
                                 Expanded(
                                   flex: 3,
                                   child: Text(
                                     '${event.event}',
-                                    style: Style.montserratStyle,
+                                    style: Style.eventStyle,
                                   ),
                                 ),
                                 Expanded(
                                   flex: 1,
                                   child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.close),
+                                    onPressed: () {
+                                      _bloc.add(DeleteEvent(event.id!.toInt()));
+                                    },
+                                    icon: Icon(
+                                      Icons.close,
+                                      size: 30,
+                                    ),
                                   ),
                                 ),
                               ],

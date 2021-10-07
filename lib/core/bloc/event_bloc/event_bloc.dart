@@ -17,6 +17,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       makeEvent: _makeEvent,
       deleteEvent: _deleteEvent,
       fetchEvents: _fetchEvents,
+      updateEvent: _updateEvent,
     );
   }
 
@@ -24,11 +25,20 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     await repository.create(Event(
       event: event.event,
       date: event.date,
+      active: 0,
     ));
-    yield EventState.initEventState();
+    add(FetchEvents());
   }
 
-  Stream<EventState> _deleteEvent(DeleteEvent event) async* {}
+  Stream<EventState> _updateEvent(UpdateEvent event) async* {
+    await repository.update(event.event);
+    add(FetchEvents());
+  }
+
+  Stream<EventState> _deleteEvent(DeleteEvent event) async* {
+    await repository.delete(event.index);
+    add(FetchEvents());
+  }
 
   Stream<EventState> _fetchEvents(FetchEvents event) async* {
     mySelectedEvents = Map();

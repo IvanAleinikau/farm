@@ -9,7 +9,7 @@ class EventRepository {
 
   Future<void> initializeDatabase() async {
     database = await openDatabase(
-      join(await getDatabasesPath(), 'event2.db'),
+      join(await getDatabasesPath(), 'event3.db'),
       onCreate: onCreate,
       version: 1,
     );
@@ -17,7 +17,7 @@ class EventRepository {
 
   void onCreate(Database database, int version) async {
     await database.execute(
-        'CREATE TABLE Event(id INTEGER PRIMARY KEY AUTOINCREMENT,event TEXT, date TEXT)');
+        'CREATE TABLE Event(id INTEGER PRIMARY KEY AUTOINCREMENT,event TEXT, date TEXT, active INTEGER)');
   }
 
   Future<int> create(Event event) async {
@@ -32,9 +32,18 @@ class EventRepository {
     return queryResult.map((e) => Event.fromJson(e)).toList();
   }
 
+  Future<void> update(Event event) async {
+    await database.update(
+      'Event',
+      event.toJson(),
+      where: 'id = ?',
+      whereArgs: [event.id],
+    );
+  }
+
   Future<void> delete(int id) async {
     await database.delete(
-      'event',
+      'Event',
       where: 'id = ?',
       whereArgs: [id],
     );
