@@ -23,6 +23,7 @@ class _CalendarPageState extends State<CalendarPage> {
   final _initialCalendarDate = DateTime(2000);
   final _lastCalendarDate = DateTime(2050);
   final eventController = TextEditingController();
+  var eventUpdateController = TextEditingController();
 
   late DateTime selectedCalendarDate;
 
@@ -35,6 +36,7 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   void dispose() {
     eventController.dispose();
+    eventUpdateController.dispose();
     super.dispose();
   }
 
@@ -157,13 +159,14 @@ class _CalendarPageState extends State<CalendarPage> {
                         ),
                         ..._listOfDayEvents(selectedCalendarDate).map(
                           (event) => Container(
+                            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                             child: Row(
                               children: [
                                 Expanded(
                                   flex: 1,
                                   child: event.active != 0
                                       ? IconButton(
-                                          color: Colors.yellow.shade800,
+                                          color: ColorPalette.circlePenColor,
                                           iconSize: 30,
                                           icon: Icon(CupertinoIcons
                                               .checkmark_alt_circle),
@@ -178,6 +181,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                         )
                                       : IconButton(
                                           iconSize: 30,
+                                          color: ColorPalette.circleColor,
                                           icon: Icon(CupertinoIcons.circle),
                                           onPressed: () {
                                             _bloc.add(UpdateEvent(Event(
@@ -186,11 +190,23 @@ class _CalendarPageState extends State<CalendarPage> {
                                               date: event.date,
                                               active: 1,
                                             )));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                backgroundColor:
+                                                    ColorPalette.appBarColor,
+                                                content: Text(
+                                                  'done'.tr,
+                                                  style: Style.montserratStyle,
+                                                ),
+                                                duration: Duration(seconds: 2),
+                                              ),
+                                            );
                                           },
                                         ),
                                 ),
                                 Expanded(
-                                  flex: 3,
+                                  flex: 2,
                                   child: Text(
                                     '${event.event}',
                                     style: Style.eventStyle,
@@ -198,14 +214,25 @@ class _CalendarPageState extends State<CalendarPage> {
                                 ),
                                 Expanded(
                                   flex: 1,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      _bloc.add(DeleteEvent(event.id!.toInt()));
-                                    },
-                                    icon: Icon(
-                                      Icons.close,
-                                      size: 30,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          _showUpdateEventDialog(_bloc, event);
+                                        },
+                                        icon:
+                                            Icon(CupertinoIcons.pen, size: 30),
+                                        color: ColorPalette.penColor,
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          _bloc.add(
+                                              DeleteEvent(event.id!.toInt()));
+                                        },
+                                        icon: Icon(Icons.close, size: 30),
+                                        color: ColorPalette.closeColor,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -286,6 +313,78 @@ class _CalendarPageState extends State<CalendarPage> {
               }
             },
             child: Text('add'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showUpdateEventDialog(EventBloc _bloc, Event event) {
+    eventUpdateController.text = event.event;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'edit'.tr,
+          style: Style.montserratStyle,
+        ),
+        content: Container(
+          child: TextField(
+            maxLines: 2,
+            controller: eventUpdateController,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: InputDecoration(
+              labelText: 'edit'.tr,
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorPalette.focusedBorderColor,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorPalette.enabledBorderColor,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              eventUpdateController.clear();
+              Navigator.pop(context);
+            },
+            child: Text('cancel'.tr),
+          ),
+          TextButton(
+            onPressed: () {
+              if (eventUpdateController.text.isEmpty) {
+                _bloc.add(FetchEvents());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: ColorPalette.appBarColor,
+                    content: Text(
+                      'please_enter_event'.tr,
+                      style: Style.montserratStyle,
+                    ),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              } else {
+                _bloc.add(UpdateEvent(Event(
+                  id: event.id,
+                  event: eventUpdateController.text,
+                  date: event.date,
+                  active: event.active,
+                )));
+                Navigator.pop(context);
+              }
+            },
+            child: Text('edit1'.tr),
           ),
         ],
       ),

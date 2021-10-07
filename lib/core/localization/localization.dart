@@ -19,7 +19,11 @@ class Localization extends Translations {
           'enter_event': 'Enter task',
           'cancel': 'Cancel',
           'add': 'Add',
-          'please_enter_event': 'Please enter event',
+          'please_enter_event': 'Please enter task.',
+          'done': 'Done.',
+          'edit': 'Edit task',
+          'edit1': 'Edit',
+          'edited': 'Edited.',
         },
         'ru_RUS': {
           'locale': 'ru_RU',
@@ -37,6 +41,11 @@ class Localization extends Translations {
           'enter_event': 'Введите задание',
           'cancel': 'Отмена',
           'add': 'Добавить',
+          'please_enter_event': 'Пожалуйста введите задание.',
+          'done': 'Выполнено.',
+          'edit': 'Изменить задание',
+          'edit1': 'Изменить',
+          'edited': 'Изменено.',
         }
       };
 }

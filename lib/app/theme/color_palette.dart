@@ -24,4 +24,9 @@ class ColorPalette{
 
   static const enabledBorderColor = Color(0xFF757575);
   static const focusedBorderColor = Color(0xFF2196F3);
+
+  static const circleColor = Color(0xFF757575);
+  static const circlePenColor = Color(0xFFF9A825);
+  static const penColor = Color(0xFF757575);
+  static const closeColor = Color(0xFF757575);
 }
