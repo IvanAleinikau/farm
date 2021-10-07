@@ -1,5 +1,6 @@
 import 'package:farm/app/pages/calendar_page.dart';
 import 'package:farm/app/pages/index.dart';
+import 'package:farm/app/pages/main_page.dart';
 import 'package:farm/app/pages/weather_page.dart';
 import 'package:farm/app/theme/color_palette.dart';
 import 'package:farm/app/theme/text_style.dart';
@@ -18,9 +19,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-    ),
+    MainPage(),
     WeatherPage(),
     CalendarPage(),
     ProductPage(),

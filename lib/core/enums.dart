@@ -4,4 +4,9 @@ enum Pages{
   calendar,
   home,
   language,
+  settings,
+  chemicals,
+  fertilizer,
+  seed,
+  fuel,
 }
