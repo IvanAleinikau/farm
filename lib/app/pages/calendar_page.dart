@@ -306,10 +306,17 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                 );
               } else {
-                _bloc.add(MakeEvent(
-                    event: eventController.text, date: selectedCalendarDate));
-                eventController.clear();
-                Navigator.pop(context);
+                if (selectedCalendarDate != null) {
+                  _bloc.add(MakeEvent(
+                      event: eventController.text, date: selectedCalendarDate));
+                  eventController.clear();
+                  Navigator.pop(context);
+                } else {
+                  _bloc.add(MakeEvent(
+                      event: eventController.text, date: _focusedCalendarDate));
+                  eventController.clear();
+                  Navigator.pop(context);
+                }
               }
             },
             child: Text('add'.tr),

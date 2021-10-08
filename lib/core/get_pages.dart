@@ -1,9 +1,4 @@
-import 'package:farm/app/pages/chemicals_page.dart';
-import 'package:farm/app/pages/fertilizer_page.dart';
-import 'package:farm/app/pages/fuel_page.dart';
 import 'package:farm/app/pages/index.dart';
-import 'package:farm/app/pages/seed_page.dart';
-import 'package:farm/app/pages/settings_page.dart';
 import 'package:get/get.dart';
 
 

@@ -24,6 +24,7 @@ class Localization extends Translations {
           'edit': 'Edit task',
           'edit1': 'Edit',
           'edited': 'Edited.',
+          'today_tasks': 'Today tasks',
         },
         'ru_RUS': {
           'locale': 'ru_RU',
@@ -46,6 +47,7 @@ class Localization extends Translations {
           'edit': 'Изменить задание',
           'edit1': 'Изменить',
           'edited': 'Изменено.',
+          'today_tasks': 'Сегодняшние задачи',
         }
       };
 }

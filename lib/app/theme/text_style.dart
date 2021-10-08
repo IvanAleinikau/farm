@@ -20,4 +20,16 @@ class Style {
   static const calendarDaysStyle = TextStyle(
     color: ColorPalette.calendarDaysColor,
   );
+
+  static const todayTasksStyle = TextStyle(
+    fontFamily: 'Montserrat',
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const settingStyle = TextStyle(
+    fontSize: 22,
+    color: ColorPalette.productColor,
+    fontFamily: 'Montserrat',
+  );
 }

@@ -9,7 +9,7 @@ class EventRepository {
 
   Future<void> initializeDatabase() async {
     database = await openDatabase(
-      join(await getDatabasesPath(), 'event3.db'),
+      join(await getDatabasesPath(), 'event4.db'),
       onCreate: onCreate,
       version: 1,
     );

@@ -1,3 +1,5 @@
+import 'package:farm/app/theme/color_palette.dart';
+import 'package:farm/app/theme/text_style.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_bloc.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_event.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_state.dart';
@@ -18,23 +20,38 @@ class Language extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              backgroundColor: Colors.transparent,
-              title: Text('change_language'.tr),
+              backgroundColor: ColorPalette.appBarColor,
+              title: Text(
+                'change_language'.tr,
+                style: Style.montserratStyle,
+              ),
             ),
             body: Container(
               child: Column(
                 children: [
                   ListTile(
-                    title: Text('English'),
-                    subtitle: Text('English'),
-                    onTap: (){
+                    title: Text(
+                      'English',
+                      style: Style.montserratStyle,
+                    ),
+                    subtitle: Text(
+                      'English',
+                      style: Style.montserratStyle,
+                    ),
+                    onTap: () {
                       _bloc.add(EnglishLocale());
                     },
                   ),
                   ListTile(
-                    title: Text('Russian'),
-                    subtitle: Text('Русский'),
-                    onTap: (){
+                    title: Text(
+                      'Russian',
+                      style: Style.montserratStyle,
+                    ),
+                    subtitle: Text(
+                      'Русский',
+                      style: Style.montserratStyle,
+                    ),
+                    onTap: () {
                       _bloc.add(RussianLocale());
                     },
                   )
