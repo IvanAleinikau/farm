@@ -226,8 +226,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          _bloc.add(
-                                              DeleteEvent(event.id!.toInt()));
+                                          _bloc.add(DeleteEvent(event.id!));
                                         },
                                         icon: Icon(Icons.close, size: 30),
                                         color: ColorPalette.closeColor,

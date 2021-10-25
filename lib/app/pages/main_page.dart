@@ -61,82 +61,87 @@ class _MainPageState extends State<MainPage> {
                 );
               },
               content: (Weather weather, List<Event> list) {
-                return Container(
-                  padding: EdgeInsets.only(top: 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Line(),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 15, 10, 15),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    weather.cityName,
-                                    style: TextStyle(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',
+                return SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Line(),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 15, 10, 15),
+                          child: Row(
+                            children: [
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      weather.cityName,
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Montserrat',
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    '${weather.description}',
+                                    Text(
+                                      '${weather.description}',
+                                      style: Style.montserratStyle,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 100),
+                                child: WeatherInfo(
+                                  temperature: weather.temperature,
+                                  iconCode: weather.iconCode,
+                                  temperatureFontSize: 64,
+                                  iconScale: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Line(),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
+                          child: Text(
+                            'today_tasks'.tr,
+                            style: Style.todayTasksStyle,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 15),
+                          child: Text(
+                            '${todaysDate.day}.${todaysDate.month}.${todaysDate.year}',
+                            style: Style.todayTasksStyle,
+                          ),
+                        ),
+                        Container(
+                          height: 350,
+                          child: list.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      padding: EdgeInsets.fromLTRB(10, 5, 5, 0),
+                                      child: Text(
+                                        '${index + 1}. ${list[index].event}',
+                                        style: Style.eventStyle,
+                                      ),
+                                    );
+                                  },
+                                )
+                              : Center(
+                                  child: Text(
+                                    'not_task'.tr,
                                     style: Style.montserratStyle,
                                   ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(left: 100),
-                              child: WeatherInfo(
-                                temperature: weather.temperature,
-                                iconCode: weather.iconCode,
-                                temperatureFontSize: 64,
-                                iconScale: 1,
-                              ),
-                            ),
-                          ],
+                                ),
                         ),
-                      ),
-                      Line(),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
-                        child: Text(
-                          'today_tasks'.tr,
-                          style: Style.todayTasksStyle,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 15),
-                        child: Text(
-                          '${todaysDate.day}.${todaysDate.month}.${todaysDate.year}',
-                          style: Style.todayTasksStyle,
-                        ),
-                      ),
-                      Container(
-                        height: 200,
-                        child: list.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: list.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    padding: EdgeInsets.fromLTRB(10, 5, 5, 0),
-                                    child: Text(
-                                      '${index + 1}. ${list[index].event}',
-                                      style: Style.eventStyle,
-                                    ),
-                                  );
-                                },
-                              )
-                            : Center(
-                                child: Text('Not tasks today'),
-                              ),
-                      ),
-                      Line(),
-                    ],
+                        Line(),
+                      ],
+                    ),
                   ),
                 );
               },

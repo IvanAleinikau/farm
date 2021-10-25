@@ -1,51 +1,47 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:farm/core/models/event_model.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class EventRepository {
-  late Database database;
+  final _collection = FirebaseFirestore.instance.collection('event');
+  late List<Event> list = [];
 
-  Future<void> initializeDatabase() async {
-    database = await openDatabase(
-      join(await getDatabasesPath(), 'event4.db'),
-      onCreate: onCreate,
-      version: 1,
+  Future<void> create(Event event) async {
+    await _collection.add(
+      {
+        'event': event.event,
+        'date': '${event.date.year}-${event.date.month}-${event.date.day}',
+        'active': event.active,
+      },
     );
-  }
-
-  void onCreate(Database database, int version) async {
-    await database.execute(
-        'CREATE TABLE Event(id INTEGER PRIMARY KEY AUTOINCREMENT,event TEXT, date TEXT, active INTEGER)');
-  }
-
-  Future<int> create(Event event) async {
-    int result = 0;
-    result = await database.insert('Event', event.toJson());
-    return result;
   }
 
   Future<List<Event>> read() async {
-    final List<Map<String, Object?>> queryResult =
-        await database.query('Event');
-    return queryResult.map((e) => Event.fromJson(e)).toList();
+    list = [];
+    final collection = await _collection.get();
+    collection.docs.forEach(
+      (doc) {
+        Event event = Event(
+          id: doc.id,
+          event: doc['event'],
+          date: DateTime.parse('${doc['date']}T00:00:00Z'),
+          active: doc['active'],
+        );
+        list.add(event);
+      },
+    );
+    return list;
   }
 
   Future<void> update(Event event) async {
-    await database.update(
-      'Event',
-      event.toJson(),
-      where: 'id = ?',
-      whereArgs: [event.id],
-    );
+    await _collection.doc(event.id).update({
+      'event': event.event,
+      'active': event.active,
+    });
   }
 
-  Future<void> delete(int id) async {
-    await database.delete(
-      'Event',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+   Future<void> delete(String id) async {
+    await _collection.doc(id).delete();
   }
 }

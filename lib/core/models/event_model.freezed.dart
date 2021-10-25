@@ -21,7 +21,7 @@ class _$EventTearOff {
   const _$EventTearOff();
 
   _Event call(
-      {int? id,
+      {String? id,
       required String event,
       required DateTime date,
       required int active}) {
@@ -43,7 +43,7 @@ const $Event = _$EventTearOff();
 
 /// @nodoc
 mixin _$Event {
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get event => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   int get active => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ mixin _$Event {
 abstract class $EventCopyWith<$Res> {
   factory $EventCopyWith(Event value, $Res Function(Event) then) =
       _$EventCopyWithImpl<$Res>;
-  $Res call({int? id, String event, DateTime date, int active});
+  $Res call({String? id, String event, DateTime date, int active});
 }
 
 /// @nodoc
@@ -79,7 +79,7 @@ class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   factory _$EventCopyWith(_Event value, $Res Function(_Event) then) =
       __$EventCopyWithImpl<$Res>;
   @override
-  $Res call({int? id, String event, DateTime date, int active});
+  $Res call({String? id, String event, DateTime date, int active});
 }
 
 /// @nodoc
@@ -124,7 +124,7 @@ class __$EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ class _$_Event implements _Event {
       _$_$_EventFromJson(json);
 
   @override
-  final int? id;
+  final String? id;
   @override
   final String event;
   @override
@@ -199,7 +199,7 @@ class _$_Event implements _Event {
 
 abstract class _Event implements Event {
   factory _Event(
-      {int? id,
+      {String? id,
       required String event,
       required DateTime date,
       required int active}) = _$_Event;
@@ -207,7 +207,7 @@ abstract class _Event implements Event {
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override
   String get event => throw _privateConstructorUsedError;
   @override

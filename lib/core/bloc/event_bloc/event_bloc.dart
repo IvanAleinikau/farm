@@ -36,7 +36,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   }
 
   Stream<EventState> _deleteEvent(DeleteEvent event) async* {
-    await repository.delete(event.index);
+    await repository.delete(event.id);
     add(FetchEvents());
   }
 

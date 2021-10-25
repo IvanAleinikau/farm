@@ -33,9 +33,9 @@ class _$EventEventTearOff {
     );
   }
 
-  DeleteEvent deleteEvent(int index) {
+  DeleteEvent deleteEvent(String id) {
     return DeleteEvent(
-      index,
+      id,
     );
   }
 }
@@ -50,7 +50,7 @@ mixin _$EventEvent {
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
-    required TResult Function(int index) deleteEvent,
+    required TResult Function(String id) deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,7 +58,7 @@ mixin _$EventEvent {
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
-    TResult Function(int index)? deleteEvent,
+    TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,7 +173,7 @@ class _$MakeEvent implements MakeEvent {
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
-    required TResult Function(int index) deleteEvent,
+    required TResult Function(String id) deleteEvent,
   }) {
     return makeEvent(event, date);
   }
@@ -184,7 +184,7 @@ class _$MakeEvent implements MakeEvent {
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
-    TResult Function(int index)? deleteEvent,
+    TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (makeEvent != null) {
@@ -273,7 +273,7 @@ class _$FetchEvents implements FetchEvents {
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
-    required TResult Function(int index) deleteEvent,
+    required TResult Function(String id) deleteEvent,
   }) {
     return fetchEvents();
   }
@@ -284,7 +284,7 @@ class _$FetchEvents implements FetchEvents {
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
-    TResult Function(int index)? deleteEvent,
+    TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (fetchEvents != null) {
@@ -400,7 +400,7 @@ class _$UpdateEvent implements UpdateEvent {
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
-    required TResult Function(int index) deleteEvent,
+    required TResult Function(String id) deleteEvent,
   }) {
     return updateEvent(event);
   }
@@ -411,7 +411,7 @@ class _$UpdateEvent implements UpdateEvent {
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
-    TResult Function(int index)? deleteEvent,
+    TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (updateEvent != null) {
@@ -461,7 +461,7 @@ abstract class $DeleteEventCopyWith<$Res> {
   factory $DeleteEventCopyWith(
           DeleteEvent value, $Res Function(DeleteEvent) then) =
       _$DeleteEventCopyWithImpl<$Res>;
-  $Res call({int index});
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -476,13 +476,13 @@ class _$DeleteEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? index = freezed,
+    Object? id = freezed,
   }) {
     return _then(DeleteEvent(
-      index == freezed
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -490,27 +490,27 @@ class _$DeleteEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteEvent implements DeleteEvent {
-  _$DeleteEvent(this.index);
+  _$DeleteEvent(this.id);
 
   @override
-  final int index;
+  final String id;
 
   @override
   String toString() {
-    return 'EventEvent.deleteEvent(index: $index)';
+    return 'EventEvent.deleteEvent(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is DeleteEvent &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)));
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
@@ -523,9 +523,9 @@ class _$DeleteEvent implements DeleteEvent {
     required TResult Function(String event, DateTime date) makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
-    required TResult Function(int index) deleteEvent,
+    required TResult Function(String id) deleteEvent,
   }) {
-    return deleteEvent(index);
+    return deleteEvent(id);
   }
 
   @override
@@ -534,11 +534,11 @@ class _$DeleteEvent implements DeleteEvent {
     TResult Function(String event, DateTime date)? makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
-    TResult Function(int index)? deleteEvent,
+    TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (deleteEvent != null) {
-      return deleteEvent(index);
+      return deleteEvent(id);
     }
     return orElse();
   }
@@ -571,9 +571,9 @@ class _$DeleteEvent implements DeleteEvent {
 }
 
 abstract class DeleteEvent implements EventEvent {
-  factory DeleteEvent(int index) = _$DeleteEvent;
+  factory DeleteEvent(String id) = _$DeleteEvent;
 
-  int get index => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DeleteEventCopyWith<DeleteEvent> get copyWith =>
       throw _privateConstructorUsedError;

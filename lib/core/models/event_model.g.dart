@@ -8,7 +8,7 @@ part of 'event_model.dart';
 
 _$_Event _$_$_EventFromJson(Map<String, dynamic> json) {
   return _$_Event(
-    id: json['id'] as int?,
+    id: json['id'] as String?,
     event: json['event'] as String,
     date: DateTime.parse(json['date'] as String),
     active: json['active'] as int,

@@ -7,7 +7,7 @@ part 'event_model.g.dart';
 class Event with _$Event {
 
   factory Event({
-    int? id,
+    String? id,
     required String event,
     required DateTime date,
     required int active,

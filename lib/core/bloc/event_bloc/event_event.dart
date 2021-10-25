@@ -14,7 +14,5 @@ abstract class EventEvent with _$EventEvent {
 
   factory EventEvent.updateEvent(Event event) = UpdateEvent;
 
-  factory EventEvent.deleteEvent(
-    int index,
-  ) = DeleteEvent;
+  factory EventEvent.deleteEvent(String id) = DeleteEvent;
 }

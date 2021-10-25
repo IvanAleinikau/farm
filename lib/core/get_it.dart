@@ -6,6 +6,5 @@ class SetupGetIt {
   static setup() {
     GetIt.instance.registerSingleton(NavigatorService());
     GetIt.instance.registerSingleton(EventRepository());
-    GetIt.instance<EventRepository>().initializeDatabase();
   }
 }
