@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm/core/models/event_model.dart';
 
 class EventRepository {

@@ -21,6 +21,9 @@ class ColorPalette{
   static const calendarSelectedDayColor = Color(0xFFF44336);
   static const calendarMarkerEventColor = Color(0xFF536DFE);
   static const calendarAddEventColor = Color(0xFF558B2F);
+  static const productsAddColor = Color(0xFF558B2F);
+  static const productsColor = Color(0xFF558B2F);
+  static const greenColor = Color(0xFF558B2F);
 
   static const enabledBorderColor = Color(0xFF757575);
   static const focusedBorderColor = Color(0xFF2196F3);

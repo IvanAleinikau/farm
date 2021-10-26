@@ -10,3 +10,10 @@ enum Pages{
   seed,
   fuel,
 }
+
+enum Products{
+  chemicals,
+  fertilizer,
+  seed,
+  fuel,
+}

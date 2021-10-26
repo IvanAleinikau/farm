@@ -26,6 +26,10 @@ class Localization extends Translations {
           'edited': 'Edited.',
           'today_tasks': 'Today tasks',
           'not_task': 'Not tasks today',
+          'name': 'Name',
+          'quantity': 'Quantity',
+          'accept':'Accept',
+          'kg': ' kg',
         },
         'ru_RUS': {
           'locale': 'ru_RU',
@@ -50,6 +54,10 @@ class Localization extends Translations {
           'edited': 'Изменено.',
           'today_tasks': 'Сегодняшние задачи',
           'not_task': 'Нет заданий на сегодня',
+          'name': 'Название',
+          'quantity': 'Количество',
+          'accept': 'Принять',
+          'kg': ' кг',
         }
       };
 }
