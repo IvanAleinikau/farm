@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm/core/models/product_model.dart';
 
-class FertilizerRepository{
-  final _collection = FirebaseFirestore.instance.collection('fertilizer');
+class FuelRepository{
+  final _collection = FirebaseFirestore.instance.collection('fuel');
   late List<Product> list = [];
 
   Future<void> create(Product product) async {

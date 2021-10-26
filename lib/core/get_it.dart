@@ -2,6 +2,7 @@ import 'package:farm/core/navigator.dart';
 import 'package:farm/data/chemicals_repository.dart';
 import 'package:farm/data/event_repository.dart';
 import 'package:farm/data/fertilizer_repository.dart';
+import 'package:farm/data/fuel_repository.dart';
 import 'package:farm/data/seed_repository.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,5 +13,6 @@ class SetupGetIt {
     GetIt.instance.registerSingleton(ChemicalsRepository());
     GetIt.instance.registerSingleton(FertilizerRepository());
     GetIt.instance.registerSingleton(SeedRepository());
+    GetIt.instance.registerSingleton(FuelRepository());
   }
 }

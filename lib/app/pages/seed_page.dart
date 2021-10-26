@@ -148,7 +148,7 @@ class _SeedPageState extends State<SeedPage> {
             Container(
               padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
               child: Text(
-                'fertilizer'.tr,
+                'seed'.tr,
                 style: Style.productsStyle,
               ),
             ),
