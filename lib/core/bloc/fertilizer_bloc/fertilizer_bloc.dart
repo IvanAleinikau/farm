@@ -1,5 +1,3 @@
-import 'package:farm/core/bloc/chemicals_bloc/chemicals_event.dart';
-import 'package:farm/core/bloc/chemicals_bloc/chemicals_state.dart';
 import 'package:farm/core/bloc/fertilizer_bloc/fertilizer_event.dart';
 import 'package:farm/core/bloc/fertilizer_bloc/fertilizer_state.dart';
 import 'package:farm/core/models/product_model.dart';

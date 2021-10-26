@@ -1,4 +1,3 @@
-import 'package:farm/core/enums.dart';
 import 'package:farm/core/models/product_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
