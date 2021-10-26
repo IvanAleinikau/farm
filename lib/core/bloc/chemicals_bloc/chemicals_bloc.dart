@@ -1,6 +1,5 @@
 import 'package:farm/core/bloc/chemicals_bloc/chemicals_event.dart';
 import 'package:farm/core/bloc/chemicals_bloc/chemicals_state.dart';
-import 'package:farm/core/bloc/event_bloc/event_event.dart';
 import 'package:farm/core/models/product_model.dart';
 import 'package:farm/data/chemicals_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
