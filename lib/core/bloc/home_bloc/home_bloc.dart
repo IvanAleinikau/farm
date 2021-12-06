@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final repository = GetIt.instance<EventRepository>();
-  final todaysDate = DateTime.now();
+  final todayDate = DateTime.now();
   HomeBloc() : super(HomeState.initHomeState());
 
   @override
@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     List<Event> list = await repository.read();
     List<Event> todayTasks = [];
     for(int i = 0; i< list.length;i++){
-      if(list[i].date.day == todaysDate.day && list[i].date.month == todaysDate.month){
+      if(list[i].date.day == todayDate.day && list[i].date.month == todayDate.month){
         todayTasks.add(list[i]);
       }
     }

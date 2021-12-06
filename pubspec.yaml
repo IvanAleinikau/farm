@@ -42,6 +42,8 @@ dependencies:
   sqflite: ^2.0.0+4
   cloud_firestore: ^2.5.4
   firebase_core: ^1.8.0
+  bloc_test: ^8.2.0
+  mocktail: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -78,8 +80,8 @@ flutter:
   fonts:
     - family: Montserrat
       fonts:
-      - asset: asset/fonts/Montserrat-Regular.ttf
-  
+        - asset: asset/fonts/Montserrat-Regular.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

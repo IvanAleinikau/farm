@@ -32,4 +32,13 @@ class Weather {
       time: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000),
     );
   }
+
+
+  List<Object> get props => [
+        cityName,
+        temperature,
+        iconCode,
+        description,
+        time,
+      ];
 }
