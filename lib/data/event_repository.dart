@@ -8,31 +8,14 @@ class EventRepository {
   late List<Event> list = [];
 
   Future<void> create(Event event) async {
-    if (event.date.month <= 9) {
-      await _collection.add(
-        {
-          'event': event.event,
-          'date': '${event.date.year}-0${event.date.month}-${event.date.day}',
-          'active': event.active,
-        },
-      );
-    } else if (event.date.day <= 9) {
-      await _collection.add(
-        {
-          'event': event.event,
-          'date': '${event.date.year}-${event.date.month}-0${event.date.day}',
-          'active': event.active,
-        },
-      );
-    } else {
-      await _collection.add(
-        {
-          'event': event.event,
-          'date': '${event.date.year}-${event.date.month}-${event.date.day}',
-          'active': event.active,
-        },
-      );
-    }
+    await _collection.add(
+      {
+        'event': event.event,
+        'date':
+            '${event.date.year}-${_addZero(event.date.month)}-${_addZero(event.date.day)}',
+        'active': event.active,
+      },
+    );
   }
 
   Future<List<Event>> read() async {
@@ -61,5 +44,13 @@ class EventRepository {
 
   Future<void> delete(String id) async {
     await _collection.doc(id).delete();
+  }
+
+  String _addZero(int value) {
+    if (value <= 9) {
+      return '0$value';
+    } else {
+      return '$value';
+    }
   }
 }
