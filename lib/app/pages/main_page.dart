@@ -9,6 +9,7 @@ import 'package:farm/core/enums.dart';
 import 'package:farm/core/models/event_model.dart';
 import 'package:farm/core/models/weather_model.dart';
 import 'package:farm/core/navigator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,14 @@ class _MainPageState extends State<MainPage> {
               centerTitle: true,
               backgroundColor: ColorPalette.appBarColor,
               actions: [
+                IconButton(
+                  onPressed: () {
+                    GetIt.instance<NavigatorService>().navigateTo(Pages.farmer);
+                  },
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                ),
                 IconButton(
                   onPressed: () {
                     GetIt.instance<NavigatorService>()

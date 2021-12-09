@@ -26,6 +26,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       event: event.event,
       date: event.date,
       active: 0,
+      responsible: event.responsible,
     ));
     add(FetchEvents());
   }

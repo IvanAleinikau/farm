@@ -28,9 +28,11 @@ class Localization extends Translations {
           'not_task': 'Not tasks today',
           'name': 'Name',
           'quantity': 'Quantity',
-          'accept':'Accept',
+          'accept': 'Accept',
           'kg': ' kg',
-          'l': ' L'
+          'l': ' L',
+          'farmer': ' Farmer',
+          'farmer_name': 'Firstname Surname',
         },
         'ru_RUS': {
           'locale': 'ru_RU',
@@ -60,6 +62,8 @@ class Localization extends Translations {
           'accept': 'Принять',
           'kg': ' кг',
           'l': ' л',
+          'farmer': ' Фермер',
+          'farmer_name': 'Имя Фамилия',
         }
       };
 }

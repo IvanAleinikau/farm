@@ -1,3 +1,4 @@
+import 'package:farm/app/pages/farmer_page.dart';
 import 'package:farm/app/pages/index.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class GetPages {
       GetPage(name: '/fertilizer', page: () => FertilizerPage()),
       GetPage(name: '/seed', page: () => SeedPage()),
       GetPage(name: '/fuel', page: () => FuelPage()),
+      GetPage(name: '/farmer', page: () => FarmerPage()),
     ];
   }
 }

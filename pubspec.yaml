@@ -32,7 +32,6 @@ dependencies:
   bloc: ^7.2.1
   flutter_bloc: ^7.3.0
   equatable: ^2.0.3
-  geolocator: ^7.6.2
   freezed: ^0.14.2
   json_serializable: ^4.1.4
   intl: ^0.17.0

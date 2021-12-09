@@ -34,13 +34,6 @@ class _WeatherPageState extends State<WeatherPage> {
               backgroundColor: ColorPalette.appBarColor,
               actions: [
                 IconButton(
-                  icon: Icon(Icons.my_location),
-                  onPressed: () {
-                    BlocProvider.of<WeatherBloc>(context)
-                        .add(FetchWeatherCurrentPosition());
-                  },
-                ),
-                IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
                     showSearch(

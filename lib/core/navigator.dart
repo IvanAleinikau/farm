@@ -27,6 +27,9 @@ class NavigatorService {
       case Pages.fuel:
         route = '/fuel';
         break;
+      case Pages.farmer:
+        route = '/farmer';
+        break;
     }
     Get.toNamed(route);
   }

@@ -9,6 +9,7 @@ enum Pages{
   fertilizer,
   seed,
   fuel,
+  farmer
 }
 
 enum Products{

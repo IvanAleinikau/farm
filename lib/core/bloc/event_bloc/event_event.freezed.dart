@@ -16,10 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$EventEventTearOff {
   const _$EventEventTearOff();
 
-  MakeEvent makeEvent({required String event, required DateTime date}) {
+  MakeEvent makeEvent(
+      {required String event,
+      required DateTime date,
+      required String responsible}) {
     return MakeEvent(
       event: event,
       date: date,
+      responsible: responsible,
     );
   }
 
@@ -47,7 +51,8 @@ const $EventEvent = _$EventEventTearOff();
 mixin _$EventEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function(String event, DateTime date, String responsible)
+        makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
     required TResult Function(String id) deleteEvent,
@@ -55,7 +60,8 @@ mixin _$EventEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function(String event, DateTime date, String responsible)?
+        makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
     TResult Function(String id)? deleteEvent,
@@ -101,7 +107,7 @@ class _$EventEventCopyWithImpl<$Res> implements $EventEventCopyWith<$Res> {
 abstract class $MakeEventCopyWith<$Res> {
   factory $MakeEventCopyWith(MakeEvent value, $Res Function(MakeEvent) then) =
       _$MakeEventCopyWithImpl<$Res>;
-  $Res call({String event, DateTime date});
+  $Res call({String event, DateTime date, String responsible});
 }
 
 /// @nodoc
@@ -117,6 +123,7 @@ class _$MakeEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
   $Res call({
     Object? event = freezed,
     Object? date = freezed,
+    Object? responsible = freezed,
   }) {
     return _then(MakeEvent(
       event: event == freezed
@@ -127,6 +134,10 @@ class _$MakeEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      responsible: responsible == freezed
+          ? _value.responsible
+          : responsible // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -134,16 +145,19 @@ class _$MakeEventCopyWithImpl<$Res> extends _$EventEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MakeEvent implements MakeEvent {
-  _$MakeEvent({required this.event, required this.date});
+  _$MakeEvent(
+      {required this.event, required this.date, required this.responsible});
 
   @override
   final String event;
   @override
   final DateTime date;
+  @override
+  final String responsible;
 
   @override
   String toString() {
-    return 'EventEvent.makeEvent(event: $event, date: $date)';
+    return 'EventEvent.makeEvent(event: $event, date: $date, responsible: $responsible)';
   }
 
   @override
@@ -153,14 +167,18 @@ class _$MakeEvent implements MakeEvent {
             (identical(other.event, event) ||
                 const DeepCollectionEquality().equals(other.event, event)) &&
             (identical(other.date, date) ||
-                const DeepCollectionEquality().equals(other.date, date)));
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.responsible, responsible) ||
+                const DeepCollectionEquality()
+                    .equals(other.responsible, responsible)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(event) ^
-      const DeepCollectionEquality().hash(date);
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(responsible);
 
   @JsonKey(ignore: true)
   @override
@@ -170,25 +188,27 @@ class _$MakeEvent implements MakeEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function(String event, DateTime date, String responsible)
+        makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
     required TResult Function(String id) deleteEvent,
   }) {
-    return makeEvent(event, date);
+    return makeEvent(event, date, responsible);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function(String event, DateTime date, String responsible)?
+        makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
     TResult Function(String id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (makeEvent != null) {
-      return makeEvent(event, date);
+      return makeEvent(event, date, responsible);
     }
     return orElse();
   }
@@ -221,11 +241,14 @@ class _$MakeEvent implements MakeEvent {
 }
 
 abstract class MakeEvent implements EventEvent {
-  factory MakeEvent({required String event, required DateTime date}) =
-      _$MakeEvent;
+  factory MakeEvent(
+      {required String event,
+      required DateTime date,
+      required String responsible}) = _$MakeEvent;
 
   String get event => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
+  String get responsible => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MakeEventCopyWith<MakeEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -270,7 +293,8 @@ class _$FetchEvents implements FetchEvents {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function(String event, DateTime date, String responsible)
+        makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
     required TResult Function(String id) deleteEvent,
@@ -281,7 +305,8 @@ class _$FetchEvents implements FetchEvents {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function(String event, DateTime date, String responsible)?
+        makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
     TResult Function(String id)? deleteEvent,
@@ -397,7 +422,8 @@ class _$UpdateEvent implements UpdateEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function(String event, DateTime date, String responsible)
+        makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
     required TResult Function(String id) deleteEvent,
@@ -408,7 +434,8 @@ class _$UpdateEvent implements UpdateEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function(String event, DateTime date, String responsible)?
+        makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
     TResult Function(String id)? deleteEvent,
@@ -520,7 +547,8 @@ class _$DeleteEvent implements DeleteEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String event, DateTime date) makeEvent,
+    required TResult Function(String event, DateTime date, String responsible)
+        makeEvent,
     required TResult Function() fetchEvents,
     required TResult Function(Event event) updateEvent,
     required TResult Function(String id) deleteEvent,
@@ -531,7 +559,8 @@ class _$DeleteEvent implements DeleteEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String event, DateTime date)? makeEvent,
+    TResult Function(String event, DateTime date, String responsible)?
+        makeEvent,
     TResult Function()? fetchEvents,
     TResult Function(Event event)? updateEvent,
     TResult Function(String id)? deleteEvent,

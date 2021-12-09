@@ -1,13 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farm/core/bloc/home_bloc/home_bloc.dart';
-import 'package:farm/core/bloc/home_bloc/home_state.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_bloc.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_event.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_state.dart';
-import 'package:farm/data/event_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockFirestore extends Mock implements FirebaseFirestore {}

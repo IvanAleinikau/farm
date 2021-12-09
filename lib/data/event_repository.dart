@@ -14,6 +14,7 @@ class EventRepository {
         'date':
             '${event.date.year}-${_addZero(event.date.month)}-${_addZero(event.date.day)}',
         'active': event.active,
+        'responsible' : event.responsible,
       },
     );
   }
@@ -28,6 +29,7 @@ class EventRepository {
           event: doc['event'],
           date: DateTime.parse('${doc['date']}T00:00:00Z'),
           active: doc['active'],
+          responsible: doc['responsible'],
         );
         list.add(event);
       },

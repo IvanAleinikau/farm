@@ -16,10 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WeatherEventTearOff {
   const _$WeatherEventTearOff();
 
-  FetchWeatherCurrentPosition fetchWeatherCurrentPosition() {
-    return FetchWeatherCurrentPosition();
-  }
-
   FetchWeather fetchWeather({required String city}) {
     return FetchWeather(
       city: city,
@@ -32,33 +28,33 @@ const $WeatherEvent = _$WeatherEventTearOff();
 
 /// @nodoc
 mixin _$WeatherEvent {
+  String get city => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchWeatherCurrentPosition,
     required TResult Function(String city) fetchWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchWeatherCurrentPosition,
     TResult Function(String city)? fetchWeather,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchWeatherCurrentPosition value)
-        fetchWeatherCurrentPosition,
     required TResult Function(FetchWeather value) fetchWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchWeatherCurrentPosition value)?
-        fetchWeatherCurrentPosition,
     TResult Function(FetchWeather value)? fetchWeather,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $WeatherEventCopyWith<WeatherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +63,7 @@ abstract class $WeatherEventCopyWith<$Res> {
   factory $WeatherEventCopyWith(
           WeatherEvent value, $Res Function(WeatherEvent) then) =
       _$WeatherEventCopyWithImpl<$Res>;
+  $Res call({String city});
 }
 
 /// @nodoc
@@ -76,103 +73,27 @@ class _$WeatherEventCopyWithImpl<$Res> implements $WeatherEventCopyWith<$Res> {
   final WeatherEvent _value;
   // ignore: unused_field
   final $Res Function(WeatherEvent) _then;
+
+  @override
+  $Res call({
+    Object? city = freezed,
+  }) {
+    return _then(_value.copyWith(
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $FetchWeatherCurrentPositionCopyWith<$Res> {
-  factory $FetchWeatherCurrentPositionCopyWith(
-          FetchWeatherCurrentPosition value,
-          $Res Function(FetchWeatherCurrentPosition) then) =
-      _$FetchWeatherCurrentPositionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$FetchWeatherCurrentPositionCopyWithImpl<$Res>
-    extends _$WeatherEventCopyWithImpl<$Res>
-    implements $FetchWeatherCurrentPositionCopyWith<$Res> {
-  _$FetchWeatherCurrentPositionCopyWithImpl(FetchWeatherCurrentPosition _value,
-      $Res Function(FetchWeatherCurrentPosition) _then)
-      : super(_value, (v) => _then(v as FetchWeatherCurrentPosition));
-
-  @override
-  FetchWeatherCurrentPosition get _value =>
-      super._value as FetchWeatherCurrentPosition;
-}
-
-/// @nodoc
-
-class _$FetchWeatherCurrentPosition implements FetchWeatherCurrentPosition {
-  _$FetchWeatherCurrentPosition();
-
-  @override
-  String toString() {
-    return 'WeatherEvent.fetchWeatherCurrentPosition()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FetchWeatherCurrentPosition);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchWeatherCurrentPosition,
-    required TResult Function(String city) fetchWeather,
-  }) {
-    return fetchWeatherCurrentPosition();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchWeatherCurrentPosition,
-    TResult Function(String city)? fetchWeather,
-    required TResult orElse(),
-  }) {
-    if (fetchWeatherCurrentPosition != null) {
-      return fetchWeatherCurrentPosition();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchWeatherCurrentPosition value)
-        fetchWeatherCurrentPosition,
-    required TResult Function(FetchWeather value) fetchWeather,
-  }) {
-    return fetchWeatherCurrentPosition(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchWeatherCurrentPosition value)?
-        fetchWeatherCurrentPosition,
-    TResult Function(FetchWeather value)? fetchWeather,
-    required TResult orElse(),
-  }) {
-    if (fetchWeatherCurrentPosition != null) {
-      return fetchWeatherCurrentPosition(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FetchWeatherCurrentPosition implements WeatherEvent {
-  factory FetchWeatherCurrentPosition() = _$FetchWeatherCurrentPosition;
-}
-
-/// @nodoc
-abstract class $FetchWeatherCopyWith<$Res> {
+abstract class $FetchWeatherCopyWith<$Res>
+    implements $WeatherEventCopyWith<$Res> {
   factory $FetchWeatherCopyWith(
           FetchWeather value, $Res Function(FetchWeather) then) =
       _$FetchWeatherCopyWithImpl<$Res>;
+  @override
   $Res call({String city});
 }
 
@@ -232,7 +153,6 @@ class _$FetchWeather implements FetchWeather {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchWeatherCurrentPosition,
     required TResult Function(String city) fetchWeather,
   }) {
     return fetchWeather(city);
@@ -241,7 +161,6 @@ class _$FetchWeather implements FetchWeather {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchWeatherCurrentPosition,
     TResult Function(String city)? fetchWeather,
     required TResult orElse(),
   }) {
@@ -254,8 +173,6 @@ class _$FetchWeather implements FetchWeather {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchWeatherCurrentPosition value)
-        fetchWeatherCurrentPosition,
     required TResult Function(FetchWeather value) fetchWeather,
   }) {
     return fetchWeather(this);
@@ -264,8 +181,6 @@ class _$FetchWeather implements FetchWeather {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchWeatherCurrentPosition value)?
-        fetchWeatherCurrentPosition,
     TResult Function(FetchWeather value)? fetchWeather,
     required TResult orElse(),
   }) {
@@ -279,7 +194,9 @@ class _$FetchWeather implements FetchWeather {
 abstract class FetchWeather implements WeatherEvent {
   factory FetchWeather({required String city}) = _$FetchWeather;
 
+  @override
   String get city => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $FetchWeatherCopyWith<FetchWeather> get copyWith =>
       throw _privateConstructorUsedError;

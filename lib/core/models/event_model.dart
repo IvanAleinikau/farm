@@ -11,6 +11,7 @@ class Event with _$Event {
     required String event,
     required DateTime date,
     required int active,
+    required String responsible,
   }) = _Event;
   
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);

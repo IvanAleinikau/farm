@@ -176,6 +176,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                               event: event.event,
                                               date: event.date,
                                               active: 0,
+                                              responsible: event.responsible,
                                             )));
                                           },
                                         )
@@ -185,11 +186,12 @@ class _CalendarPageState extends State<CalendarPage> {
                                           icon: Icon(CupertinoIcons.circle),
                                           onPressed: () {
                                             _bloc.add(UpdateEvent(Event(
-                                              id: event.id,
-                                              event: event.event,
-                                              date: event.date,
-                                              active: 1,
-                                            )));
+                                                id: event.id,
+                                                event: event.event,
+                                                date: event.date,
+                                                active: 1,
+                                                responsible:
+                                                    event.responsible)));
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -307,12 +309,18 @@ class _CalendarPageState extends State<CalendarPage> {
               } else {
                 if (selectedCalendarDate != null) {
                   _bloc.add(MakeEvent(
-                      event: eventController.text, date: selectedCalendarDate));
+                    event: eventController.text,
+                    date: selectedCalendarDate,
+                    responsible: 'Виктория Юрцевич',
+                  ));
                   eventController.clear();
                   Navigator.pop(context);
                 } else {
                   _bloc.add(MakeEvent(
-                      event: eventController.text, date: _focusedCalendarDate));
+                    event: eventController.text,
+                    date: _focusedCalendarDate,
+                    responsible: 'Виктория Юрцевич',
+                  ));
                   eventController.clear();
                   Navigator.pop(context);
                 }
@@ -382,11 +390,11 @@ class _CalendarPageState extends State<CalendarPage> {
                 );
               } else {
                 _bloc.add(UpdateEvent(Event(
-                  id: event.id,
-                  event: eventUpdateController.text,
-                  date: event.date,
-                  active: event.active,
-                )));
+                    id: event.id,
+                    event: eventUpdateController.text,
+                    date: event.date,
+                    active: event.active,
+                    responsible: event.responsible)));
                 Navigator.pop(context);
               }
             },
