@@ -4,35 +4,12 @@ import 'package:farm/core/bloc/settings_bloc/settings_bloc.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_event.dart';
 import 'package:farm/core/bloc/settings_bloc/settings_state.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
-class MockFirestore extends Mock implements FirebaseFirestore {}
 
 void main() {
   mainBloc();
 }
 
 void mainBloc() {
-  // group('Home BLoC', () {
-  //   late HomeBloc homeBloc;
-  //   late MockFirestore mockFirestore;
-  //
-  //   setUp(() async {
-  //     mockFirestore = MockFirestore();
-  //     GetIt.instance.registerSingleton(EventRepository());
-  //     homeBloc = HomeBloc();
-  //   });
-  //
-  //   blocTest<HomeBloc, HomeState>(
-  //     'Check english locale',
-  //     build: () => HomeBloc(),
-  //     expect: () => [],
-  //   );
-  //
-  //   tearDown(() {
-  //     homeBloc.close();
-  //   });
-  // });
 
   group('Setting BLoC', () {
     late SettingsBloc settingsBloc;
